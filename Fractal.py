@@ -26,8 +26,15 @@ def fractalAlgorithm(data, s, c):
             A[row][i] += 1
             A[row][col] += s
 
-    print(N)
-    print(A)
+    offset = np.zeros((N*N, D))
+    for i in range(N):
+        offset[i] = c
+
+    offset = offset * -s
+
+    new_values = np.dot(A, data) - offset
+
+    print(new_values)
 
 
 
@@ -41,7 +48,7 @@ def createCSV(newData):
 
 def test():
     data = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
-    s = 1
+    s = 0.5
     c = [0, 0]
     fractalAlgorithm(data, s, c)
 

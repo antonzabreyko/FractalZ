@@ -3,7 +3,8 @@ import csv
 import numpy as np
 
 '''Given the input file and the number of additional levels to be generated,
-    create a new file called output.csv with the new data. '''
+    create a new file called output.csv with the new data.
+    @author Anton A. Zabreyko '''
 def generateFractals(file, level, scale_factor, center=None):
     data = readFile(file)
 
@@ -20,7 +21,14 @@ def fractalAlgorithm(data, s, c):
 
     for i in range(N):
         for j in range(N):
-            A[]
+            row = N * i + j
+            col = j
+            A[row][i] += 1
+            A[row][col] += s
+
+    print(N)
+    print(A)
+
 
 
 
@@ -28,8 +36,13 @@ def fractalAlgorithm(data, s, c):
 def readFile(file):
     return
 
-def fractalAlgorithm(data, center):
-    return
-
 def createCSV(newData):
     return
+
+def test():
+    data = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
+    s = 1
+    c = [0, 0]
+    fractalAlgorithm(data, s, c)
+
+test()

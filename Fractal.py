@@ -3,16 +3,20 @@ import csv
 import numpy as np
 
 '''Given the input file and the number of additional levels to be generated,
-    create a new file called output.csv with the new data.
+    create a new file called output.frac with the new data.
     @author Anton A. Zabreyko '''
-def generateFractals(file, level, scale_factor, center=None):
+
+''' Run the program. '''
+@staticmethod
+def run(file, level, scale_factor, center=None):
     data = readFile(file)
 
-    newData = fractalAlgorithm(data, scale_factor, center)
+    new_data = fractalAlgorithm(data, scale_factor, center)
 
-    createCSV(newData)
+    createFile(new_data)
 
-
+''' Runs the algorithm for given data, scale, and center for one level. '''
+@staticmethod
 def fractalAlgorithm(data, s, c):
     N = data.shape[0]
     D = data.shape[1]
@@ -34,22 +38,25 @@ def fractalAlgorithm(data, s, c):
 
     new_values = np.dot(A, data) - offset
 
-    print(new_values)
+    return new_values
 
 
 
-
-
+''' Reads in a .frac file. '''
+@staticmethod
 def readFile(file):
     return
 
-def createCSV(newData):
+''' Creates a new .frac file called "output". '''
+@staticmethod
+def createFile(newData):
     return
+
 
 def test():
     data = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
     s = 0.5
     c = [0, 0]
-    fractalAlgorithm(data, s, c)
+    fracatalAlgorithm(data, s, c)
 
 test()

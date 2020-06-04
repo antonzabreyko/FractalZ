@@ -6,8 +6,8 @@ import numpy as np
     create a new file called output.frac with the new data.
     @author Anton A. Zabreyko '''
 
-''' Run the program. '''
-@staticmethod
+''' Run the program, reading in the given file and outputting new data in a file
+    named output.frac. '''
 def run(file, level, scale_factor, center=None):
     data = readFile(file)
 
@@ -16,7 +16,6 @@ def run(file, level, scale_factor, center=None):
     createFile(new_data)
 
 ''' Runs the algorithm for given data, scale, and center for one level. '''
-@staticmethod
 def fractalAlgorithm(data, s, c):
     N = data.shape[0]
     D = data.shape[1]
@@ -43,12 +42,50 @@ def fractalAlgorithm(data, s, c):
 
 
 ''' Reads in a .frac file. '''
-@staticmethod
 def readFile(file):
-    return
+    f = open(file, "r")
+    text = f.read()
+    lines = text.splitlines()
+
+    N, D, L, C = extractFirstLine(lines[0])
+
+    data = extractData(lines[1:])
+
+
+def extractData(lines):
+    data = []
+    for i in range(len(lines)):
+        data.append(parseC(lines[i]))
+
+    return data
+
+
+
+''' Extracts fundamental data from the first line. '''
+def extractFirstLine(text):
+    N = int(text[text.find("N=")+2])
+    D = int(text[text.find("D=")+2])
+    L = int(text[text.find("L=")+2])
+    C = parseC(text[text.find("C=")+3:text.find(")")])
+
+    return N, D, L, C
+
+def parseC(C):
+    c_vec = []
+    i = 0
+    while (i < len(C)):
+        if (C[i].isnumeric()):
+            c_vec.append(int(C[i]))
+        elif C[i] == "-":
+            c_vec.append(int(C[i:i+2]))
+            i += 1
+        i += 1
+    return np.array(c_vec)
+
+
+
 
 ''' Creates a new .frac file called "output". '''
-@staticmethod
 def createFile(newData):
     return
 
@@ -57,6 +94,8 @@ def test():
     data = np.array([[1, 1], [1, -1], [-1, -1], [-1, 1]])
     s = 0.5
     c = [0, 0]
-    fracatalAlgorithm(data, s, c)
+    fractalAlgorithm(data, s, c)
+
+    readFile("Test.frac")
 
 test()

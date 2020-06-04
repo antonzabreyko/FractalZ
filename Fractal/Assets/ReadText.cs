@@ -11,11 +11,16 @@ public class ReadText : MonoBehaviour
     {
         
         string path = "Assets/Resources/test";
-
+        List<string> strings = new List<string>();
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
-        Debug.Log(reader.ReadToEnd());
+        while (!reader.EndOfStream)
+        {
+            strings.Add(reader.ReadLine());
+            
+        }
         reader.Close();
+        Debug.Log(strings.ToString());
     }
 
     // Update is called once per frame

@@ -8,12 +8,12 @@ import numpy as np
 
 ''' Run the program, reading in the given file and outputting new data in a file
     named output.frac. '''
-def run(file, scale_factor, center=None):
-    data = readFile(file)
+def run(file, scale_factor):
+    N, D, L, C, data = readFile(file)
 
-    new_data = fractalAlgorithm(data, scale_factor, center)
+    new_data = fractalAlgorithm(data, scale_factor, C)
 
-    createFile(new_data)
+    createFile(N, D, L, C, new_data)
 
 ''' Runs the algorithm for given data, scale, and center for one level. '''
 def fractalAlgorithm(data, s, c):
@@ -51,6 +51,8 @@ def readFile(file):
 
     data = extractData(lines[1:])
 
+    return N, D, L, C, np.array(data)
+
 
 def extractData(lines):
     data = []
@@ -86,11 +88,25 @@ def parseC(C):
 
 
 ''' Creates a new .frac file called "output". '''
-def createFile(newData):
-    with open("output.frac", "wb"):
-        out.write("")
+def createFile(N, D, L, C, newData):
+    text = "N=" + str(N) + " D=" + str(D) + " L=" + str(L) + " C=" + str(C) + "\n"
+    for i in range(len(newData)):
+        text += addLine(newData[i]) + "\n"
+
+
+
+    with open("output.frac", "w") as out:
+        out.write(text)
 
     return
+
+def addLine(row):
+    text = ""
+    for i in range(len(row)-1):
+        text += str(row[i]) + ", "
+
+    text += str(row[len(row)-1])
+    return text
 
 
 def test():

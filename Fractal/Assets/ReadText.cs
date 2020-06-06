@@ -20,7 +20,10 @@ public class ReadText : MonoBehaviour
             
         }
         reader.Close();
-        Debug.Log(strings.ToString());
+        for (int i = 0; i < strings.Count; i++)
+        {
+            Debug.Log(strings[i]);
+        }
     }
 
     // Update is called once per frame

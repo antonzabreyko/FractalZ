@@ -10,7 +10,7 @@ public class ReadText : MonoBehaviour
     void Start()
     {
         
-        string path = "Assets/Resources/test";
+        string path = "Assets/Resources/Test.frac";
         List<string> strings = new List<string>();
         //Read the text from directly from the test.txt file
         StreamReader reader = new StreamReader(path);
@@ -20,7 +20,10 @@ public class ReadText : MonoBehaviour
             
         }
         reader.Close();
-        for (int i = 0; i < strings.Count; i++)
+        //metadata
+        Debug.Log(strings[0]);
+        //points
+        for (int i = 1; i < strings.Count; i++)
         {
             Debug.Log(strings[i]);
         }

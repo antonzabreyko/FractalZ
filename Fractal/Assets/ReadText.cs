@@ -25,7 +25,10 @@ public class ReadText : MonoBehaviour
         //points
         for (int i = 1; i < strings.Count; i++)
         {
-            Debug.Log(strings[i]);
+            //Debug.Log(strings[i]);
+            string[] coordinates = strings[i].Split(',');
+            int x = Int32.parse(coordinates[0]);
+            int y = Int32.parse(coordinates[1]);
         }
     }
 

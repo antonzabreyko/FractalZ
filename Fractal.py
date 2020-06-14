@@ -3,8 +3,7 @@ import csv
 import numpy as np
 
 '''Given the input file and the number of additional levels to be generated,
-    create a new file called output.frac with the new data.
-    @author Anton A. Zabreyko '''
+    create a new file called output.frac with the new data. '''
 
 ''' Run the program, reading in the given file and outputting new data in a file
     named output.frac. '''

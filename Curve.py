@@ -22,3 +22,11 @@ class Function():
     ''' Recursively parses and returns a Python function that functions identically to the provided function. '''
     def parseFunction(self, func):
         return lambda x: x
+
+
+
+def test():
+    f = Function("x(t) = t")
+    print(f.function(5))
+
+test()
